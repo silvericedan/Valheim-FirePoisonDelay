@@ -9,7 +9,11 @@
     <DebugType>none</DebugType>
   </PropertyGroup>
 
-  <ItemGroup>
+	<PropertyGroup>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+	</PropertyGroup>
+
+	<ItemGroup>
     <PackageReference Include="BepInEx.Analyzers" Version="1.0.4">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -51,7 +55,7 @@
       <HintPath>..\..\ModValheim_1\Libs\assembly_utils.dll</HintPath>
     </Reference>
     <Reference Include="assembly_valheim">
-      <HintPath>..\..\ModValheim_1\Libs\assembly_valheim.dll</HintPath>
+      <HintPath>Libs\assembly_valheim_publicized.dll</HintPath>
     </Reference>
     <Reference Include="BepInEx">
       <HintPath>..\..\ModValheim_1\Libs\BepInEx.dll</HintPath>
