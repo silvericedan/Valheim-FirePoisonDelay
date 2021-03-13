@@ -27,7 +27,7 @@ namespace BepInExPlugin
         /// Human-readable name of the plugin. In general, it should be short and concise.
         /// This is the name that is shown to the users who run BepInEx and to modders that inspect BepInEx logs. 
         /// </summary>
-        public const string PLUGIN_NAME = "BepInEx Plugin";
+        public const string PLUGIN_NAME = "FirePoisonDelay";
         
         /// <summary>
         /// Unique ID of the plugin.
@@ -36,8 +36,8 @@ namespace BepInExPlugin
         ///
         /// When creating Harmony patches, prefer using this ID for Harmony instances as well.
         /// </summary>
-        public const string PLUGIN_ID = "org.bepinex.my.plugin";
-        
+        public const string PLUGIN_ID = "com.github.silvericedan.FirePoisonDelay";
+
         /// <summary>
         /// Version of the plugin. Must be in form <major>.<minor>.<build>.<revision>.
         /// Major and minor versions are mandatory, but build and revision can be left unspecified.
