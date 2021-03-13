@@ -16,6 +16,7 @@ namespace BepInExPlugin
             Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), null);
         }
 
+        [HarmonyPatch(typeof(SE_Burning), "AddFireDamage")]
         public static class DelayFire
         {
             
@@ -25,24 +26,19 @@ namespace BepInExPlugin
             }
 
             [HarmonyPrefix]
-            [HarmonyPatch(typeof(SE_Burning),"AddFireDamage")]
-            static bool AddFireDamage(ref float damage, ref float ___m_totalDamage, ref float ___m_damageInterval, 
-                ref float ___m_ttl, ref HitData.DamageTypes ___m_damage, SE_Burning __instance)
+            static bool AddFireDamage(SE_Burning __instance, ref float damage)
             {
-                ___m_totalDamage = Mathf.Max(___m_totalDamage, damage);
-                int num = (int)(___m_ttl / ___m_damageInterval);
-                float fire = ___m_totalDamage / (float)num;
-                ___m_damage.m_fire = fire * 0.5f;
+                Debug.Log("damageeeeefireee: " + damage);
+                __instance.m_totalDamage = Mathf.Max(__instance.m_totalDamage, damage);
+                int num = (int)(__instance.m_ttl / __instance.m_damageInterval);
+                float fire = __instance.m_totalDamage / (float)num;
+                __instance.m_damage.m_fire = fire;
                 __instance.ResetTime();
                 return false;
             }
-
-            
-
         }
        
         [HarmonyPatch(typeof(Console), "InputText")]
-
         public static class Console_Patch
         {
 
@@ -53,10 +49,10 @@ namespace BepInExPlugin
             }
         }
 
+        [HarmonyPatch(typeof(SE_Poison), "AddDamage")]
         public static class DelayPoison
         {
             [HarmonyPrefix]
-            [HarmonyPatch(typeof(SE_Poison), "AddDamage")]
             static bool AddDamage(SE_Poison __instance, ref float damage)
             {
                 Debug.Log("damageeeee: " + damage);
@@ -74,6 +70,7 @@ namespace BepInExPlugin
                 return false;
             }
         }
+
     }
 
 
